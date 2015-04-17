@@ -121,4 +121,13 @@ describe('it should have players',function(){
     player.addCard(unshuffledDeck.giveACard());
     expect(player.isLost()).toEqual(true);       
   });
+
+  it('should be able to split hand',function(){
+    var card1 = unshuffledDeck.giveACard();
+    var card2 = unshuffledDeck.giveACard();
+    player.addCard(card1);
+    player.addCard(card2);   
+    player.splitHand();
+    expect(player.hands.length).toEqual(2);
+  });
 });

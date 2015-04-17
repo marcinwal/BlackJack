@@ -72,6 +72,13 @@ Player.prototype.isLost = function() {
   if (typeof this.hands[1] === 'undefined') return this.hands[0].isLost();
   return this.hands[1].isLost() && this.hands[0].isLost();
 };
+//allowed only if hands of the same value
+Player.prototype.splitHand = function() {
+  this.hands[1] = new Hand();
+  this.hands[1].add(this.hands[0].cards.pop());
+  this.hands[0].score /= 2;
+  this.hands[1].score = this.hands[0].score;
+};
 
 //Dealer class
 
