@@ -26,3 +26,7 @@ Deck.prototype.shuffle = function() {
     this.swap(i,choice);
   }
 };
+
+Deck.prototype.giveACard = function() {
+  return this.deck[--this.count];
+};
