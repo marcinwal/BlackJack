@@ -28,4 +28,22 @@ describe('it shoud have a deck of cards',function(){
     expect(deck.deck[0].rank).toEqual(6);
   });
 
+  it('should be able to compare two decks',function(){
+    deck2 = new Deck();
+    expect(countDifferences(deck,deck2)).toEqual(0);
+  });
+
+  it('should be able to compare two decks',function(){
+    deck2 = new Deck();
+    deck.swap(0,5);
+    expect(countDifferences(deck,deck2)).toEqual(1);
+  });
+
+  it('should be able to shuffle a deck',function(){
+    unshuffleDeck = new Deck();
+    deck.shuffle();
+    expect(countDifferences(deck,unshuffleDeck)).toBeGreaterThan(0);
+    console.log(countDifferences(deck,unshuffleDeck)); //test
+  });
+
 });

@@ -19,3 +19,10 @@ Deck.prototype.swap = function(i,j) {
   this.deck[i] = this.deck[j];
   this.deck[j] = swp;
 };
+
+Deck.prototype.shuffle = function() {
+  for(var i=51;i > 0;i--){
+    var choice = Math.floor(Math.random()*(i+1));
+    this.swap(i,choice);
+  }
+};
