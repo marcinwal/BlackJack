@@ -40,14 +40,55 @@ describe('it shoud have a deck of cards',function(){
   });
 
   it('should be able to shuffle a deck',function(){
-    unshuffleDeck = new Deck();
+    unshuffledDeck = new Deck();
     deck.shuffle();
-    expect(countDifferences(deck,unshuffleDeck)).toBeGreaterThan(0);
+    expect(countDifferences(deck,unshuffledDeck)).toBeGreaterThan(0);
   });
 
   it('should give a card from a deck',function(){
     var lastCard = deck.deck[51];
     expect(deck.giveACard()).toEqual(lastCard);
+  });
+
+});
+
+describe('it should have hands',function(){
+
+  var hand;
+  var card;
+  var deck;
+
+  beforeEach(function(){
+    hand = new Hand();
+    unshuffledDeck = new Deck();
+  });
+
+  it('should start with an empty hand',function(){
+    expect(hand.cards.length).toEqual(0);
+  });
+
+  it('should be able to add a card to a hand',function(){
+     card = unshuffledDeck.giveACard();
+     hand.add(card);
+     expect(hand.cards[0]).toEqual(card);
+  });
+
+  it('should score a hand after new card given',function(){
+    card1 = unshuffledDeck.giveACard();
+    card2 = unshuffledDeck.giveACard();
+    hand.add(card);
+    hand.add(card);
+    expect(hand.score).toEqual(20);
+  });
+
+  it('should loose with points above 21',function(){
+    card1 = unshuffledDeck.giveACard();
+    card2 = unshuffledDeck.giveACard();
+    card3 = unshuffledDeck.giveACard();
+    hand.add(card1);
+    hand.add(card2);
+    hand.add(card3);
+    expect(hand.isLost()).toEqual(true);    
   });
 
 });
