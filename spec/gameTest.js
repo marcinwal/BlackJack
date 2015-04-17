@@ -17,6 +17,16 @@ describe('it should have a card',function(){
     expect(card.isRankEqual(card2)).toBe(true);
     expect(card.isRankEqual(card3)).toBe(false);  
    });
+
+   it('should convert card to png code',function(){
+    var card1 = new Card(2,13);
+    var card2 = new Card(3,11);
+    var card3 = new Card(4,7);
+    expect(card.toString()).toEqual('cq');
+    expect(card1.toString()).toEqual('dk');
+    expect(card2.toString()).toEqual('hj');
+    expect(card3.toString()).toEqual('s7');
+   });
 });
 
 

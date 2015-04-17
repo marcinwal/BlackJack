@@ -1,4 +1,7 @@
 //Card class
+var suitCodes = 'cdhs';
+var rankCodes = 'jqk';
+
 var Card = function(suit,rank){
   this.suit = suit;
   this.rank = rank;
@@ -8,13 +11,16 @@ Card.prototype.isRankEqual = function(card) {
   return this.rank === card.rank;
 };
 
+//string for picture codes
+Card.prototype.toString = function(){
+  var rank = this.rank > 10 ? rankCodes.charAt(this.rank-11) : this.rank;
+  return suitCodes.charAt(this.suit-1) + rank;
+};
 
 //Deck class
 var Deck = function(){
-
   this.count = 52;
   this.deck = new Array(52);
-
   var cardsInDeck = 0;
     for(var i = 1; i <= 4;i++)
       for(var j=1; j<= 13; j++){
