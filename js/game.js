@@ -113,6 +113,21 @@ Player.prototype.isSplittingAllowed = function(){
   return (this.hands[0].isSplittingAllowed());
 };
 
-//Dealer class
+//Dealer class inheriting from Player
+var Dealer = function(){
+};
+
+Dealer.prototype = new Player();
+
+Dealer.prototype.shouldTakeCard = function() {
+  return this.hands[0].score <= 16 ? true : false; 
+};
+
+Dealer.prototype.isSplittingAllowed = function(){
+  return false;
+};
+
+
+
 
 

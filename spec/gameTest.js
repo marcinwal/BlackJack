@@ -148,5 +148,26 @@ describe('it should have players',function(){
 
 
 describe('it should describe a dealer',function(){
+  var dealer;
+  var card1,card2,card3;
+  beforeEach(function(){
+    dealer = new Dealer();
+    card1 = new Card(1,10);
+    card2 = new Card(1,6);
+    card3 = new Card(2,6);
+  });
 
+  it('should take card if poinst <= 16',function(){
+    dealer.addCard(card1);
+    dealer.addCard(card2);
+    expect(dealer.shouldTakeCard()).toBe(true);
+    dealer.addCard(card3);
+    expect(dealer.shouldTakeCard()).toBe(false);    
+  });
+
+  it('should not be allowed to split for a delaer',function(){
+    dealer.addCard(card2);
+    dealer.addCard(card3);
+    expect(dealer.isSplittingAllowed()).toBe(false);
+  });
 });
