@@ -92,3 +92,25 @@ describe('it should have hands',function(){
   });
 
 });
+
+describe('it should have players',function(){
+  var player;
+  var deck;
+  var hand;
+
+  beforeEach(function(){
+    player = new Player;
+    deck = new Deck();
+    deck.shuffle();
+  });
+
+  it('should have hand when he starts',function(){
+    expect(player.hands.length).toEqual(2);
+  });
+
+  it('should be able to add starting hand',function(){
+    player.addCard(deck.giveACard());
+    player.addCard(deck.giveACard());
+    expect(player.hands[0].score).toBeGreaterThan(0);
+  });
+});

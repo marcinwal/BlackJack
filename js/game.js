@@ -57,3 +57,15 @@ Hand.prototype.isLost = function() {
   return this.score > 21;
 };
 
+//Player class 
+var Player = function(){
+  this.hands = []; //ready for splits
+  this.hands[0] = new Hand();
+  this.hands[1] = new Hand();
+};
+
+Player.prototype.addCard = function(card,nhand) {
+  var hand;
+  if (typeof nhand === 'undefined') hand = 0;
+  this.hands[hand].add(card);
+};
