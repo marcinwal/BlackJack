@@ -65,8 +65,9 @@ Hand.prototype.numOfCards = function(){
   return this.cards.length;
 }
 
+//in case of splitting
 Hand.prototype.halfScore = function(){
-  this.score /= 2; //in case of splitting
+  this.score /= 2; 
 }
 
 Hand.prototype.setScore = function(number){

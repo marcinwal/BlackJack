@@ -9,6 +9,14 @@ describe('it should have a card',function(){
     expect(card.suit).toEqual(1);
     expect(card.rank).toEqual(12);
    });
+
+   it('should compare the ranks',function(){
+    var card2 = new Card(2,12);
+    var card3 = new Card(2,10);
+
+    expect(card.isRankEqual(card2)).toBe(true);
+    expect(card.isRankEqual(card3)).toBe(false);  
+   });
 });
 
 
