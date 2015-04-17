@@ -101,16 +101,24 @@ describe('it should have players',function(){
   beforeEach(function(){
     player = new Player;
     deck = new Deck();
+    unshuffledDeck = new Deck();
     deck.shuffle();
   });
 
   it('should have hand when he starts',function(){
-    expect(player.hands.length).toEqual(2);
+    expect(player.hands.length).toEqual(1);
   });
 
   it('should be able to add starting hand',function(){
     player.addCard(deck.giveACard());
     player.addCard(deck.giveACard());
     expect(player.hands[0].score).toBeGreaterThan(0);
+  });
+
+  it('should be able to say if player lost',function(){
+    player.addCard(unshuffledDeck.giveACard());
+    player.addCard(unshuffledDeck.giveACard());
+    player.addCard(unshuffledDeck.giveACard());
+    expect(player.isLost()).toEqual(true);       
   });
 });

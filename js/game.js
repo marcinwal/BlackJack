@@ -42,7 +42,7 @@ var Hand = function(){
   this.score = 0;
 };
 
-Hand.prototype.calcScore = function(card) {
+Hand.prototype.calcScore_ = function(card) {
   if (card.rank >= 10) return 10;
   if (card.rank === 1) return this.score+11<=21 ? 11 : 1;
   return card.rank;
@@ -50,7 +50,7 @@ Hand.prototype.calcScore = function(card) {
 
 Hand.prototype.add = function(card) {
   this.cards.push(card);
-  this.score += this.calcScore(card);
+  this.score += this.calcScore_(card);
 };
 
 Hand.prototype.isLost = function() {
@@ -61,11 +61,18 @@ Hand.prototype.isLost = function() {
 var Player = function(){
   this.hands = []; //ready for splits
   this.hands[0] = new Hand();
-  this.hands[1] = new Hand();
 };
 
-Player.prototype.addCard = function(card,nhand) {
-  var hand;
-  if (typeof nhand === 'undefined') hand = 0;
+Player.prototype.addCard = function(card,hand) {
+  if (typeof hand === 'undefined') hand = 0;
   this.hands[hand].add(card);
 };
+
+Player.prototype.isLost = function() {
+  if (typeof this.hands[1] === 'undefined') return this.hands[0].isLost();
+  return this.hands[1].isLost() && this.hands[0].isLost();
+};
+
+//Dealer class
+
+
