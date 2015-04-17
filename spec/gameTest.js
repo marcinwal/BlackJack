@@ -145,3 +145,8 @@ describe('it should have players',function(){
     expect(player.hands.length).toEqual(2);
   });
 });
+
+
+describe('it should describe a dealer',function(){
+
+});

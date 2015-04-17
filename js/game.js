@@ -80,6 +80,11 @@ Hand.prototype.isSplittingAllowed = function(){
   return false;
 }
 
+//used in case of splitting
+Hand.prototype.popCard = function(){
+  return this.cards.pop();
+}
+
 //Player class 
 var Player = function(){
   this.hands = []; //ready for splits
@@ -98,13 +103,13 @@ Player.prototype.isLost = function() {
 //allowed only if hands of the same value
 Player.prototype.splitHand = function() {
   this.hands[1] = new Hand();
-  this.hands[1].add(this.hands[0].cards.pop());
+  this.hands[1].add(this.hands[0].popCard());
   this.hands[0].halfScore();
   this.hands[1].setScore(this.hands[0].score);
 };
 
 Player.prototype.isSplittingAllowed = function(){
-  if (this.hands.length > 1) return false; //alreadt split
+  if (this.hands.length > 1) return false; //already split
   return (this.hands[0].isSplittingAllowed());
 };
 
