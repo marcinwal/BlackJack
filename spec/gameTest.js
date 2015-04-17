@@ -88,7 +88,7 @@ describe('it should have hands',function(){
     hand.add(card1);
     hand.add(card2);
     hand.add(card3);
-    expect(hand.isLost()).toEqual(true);    
+    expect(hand.isLost()).toBe(true);    
   });
 
 });
@@ -119,7 +119,13 @@ describe('it should have players',function(){
     player.addCard(unshuffledDeck.giveACard());
     player.addCard(unshuffledDeck.giveACard());
     player.addCard(unshuffledDeck.giveACard());
-    expect(player.isLost()).toEqual(true);       
+    expect(player.isLost()).toBe(true);       
+  });
+
+  it('should check if splitting is allowed',function(){
+    player.addCard(unshuffledDeck.giveACard());
+    player.addCard(unshuffledDeck.giveACard());
+    expect(player.isSplittingAllowed()).toBe(false);    
   });
 
   it('should be able to split hand',function(){

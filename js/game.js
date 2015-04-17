@@ -4,6 +4,10 @@ var Card = function(suit,rank){
   this.rank = rank;
 };
 
+Card.prototype.isRankEqual = function(card) {
+  return this.rank === card.rank;
+};
+
 
 //Deck class
 var Deck = function(){
@@ -57,6 +61,24 @@ Hand.prototype.isLost = function() {
   return this.score > 21;
 };
 
+Hand.prototype.numOfCards = function(){
+  return this.cards.length;
+}
+
+Hand.prototype.halfScore = function(){
+  this.score /= 2; //in case of splitting
+}
+
+Hand.prototype.setScore = function(number){
+  this.score = number;
+}
+
+Hand.prototype.isSplittingAllowed = function(){
+  if (this.cards.length > 2) return false;
+  if (this.cards.length = 2) return this.cards[0].isRankEqual(this.cards[1]);
+  return false;
+}
+
 //Player class 
 var Player = function(){
   this.hands = []; //ready for splits
@@ -76,8 +98,13 @@ Player.prototype.isLost = function() {
 Player.prototype.splitHand = function() {
   this.hands[1] = new Hand();
   this.hands[1].add(this.hands[0].cards.pop());
-  this.hands[0].score /= 2;
-  this.hands[1].score = this.hands[0].score;
+  this.hands[0].halfScore();
+  this.hands[1].setScore(this.hands[0].score);
+};
+
+Player.prototype.isSplittingAllowed = function(){
+  if (this.hands.length > 1) return false; //alreadt split
+  return (this.hands[0].isSplittingAllowed());
 };
 
 //Dealer class
