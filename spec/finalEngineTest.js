@@ -1,13 +1,13 @@
 describe('it should have game',function(){
   var game;
 
-  xit('should add players',function(){
+  it('should add players',function(){
     game = new Game();
     game.addPlayer();
     expect(game.players.length).toEqual(1);
   });
 
-  xit('the dealer should give cards to all',function(){
+  it('the dealer should give cards to all',function(){
     game = new Game();
     game.addPlayer();
     game.gameInit();
@@ -15,7 +15,7 @@ describe('it should have game',function(){
     expect(game.players[0].hands[0].numOfCards()).toEqual(2);
   });
 
-  xit('should take extra card if hit',function(){
+  it('should take extra card if hit',function(){
     game = new Game();
     game.addPlayer();
     game.gameInit();
@@ -23,7 +23,7 @@ describe('it should have game',function(){
     expect(game.players[0].hands[0].numOfCards()).toEqual(3);
   });
 
-  xit('should be the end of the game if all lost/pass',function(){
+  it('should be the end of the game if all lost/pass',function(){
     game = new Game();
     game.addPlayer();
     game.gameInit();
@@ -31,7 +31,7 @@ describe('it should have game',function(){
     expect(game.areAllPlayersFinished()).toBe(true);
   });
 
-  xit('dealer should play until > 16',function(){
+  it('dealer should play until > 16',function(){
     game = new Game();
     game.addPlayer();
     game.gameInit();  
