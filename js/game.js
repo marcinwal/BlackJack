@@ -1,7 +1,7 @@
-//Card class
 var suitCodes = 'cdhs';
 var rankCodes = 'jqk';
 
+//Card class
 var Card = function(suit,rank){
   this.suit = suit;
   this.rank = rank;
@@ -42,6 +42,7 @@ Deck.prototype.shuffle = function() {
 };
 
 Deck.prototype.giveACard = function() {
+  if (this.count === 0) throw "Cards are gone";
   return this.deck[--this.count];
 };
 
@@ -134,6 +135,13 @@ Dealer.prototype.isSplittingAllowed = function(){
 };
 
 
+//Game class
 
+var Game = function(numberOfPlayers){
+  this.numPlayers = typeof numberOfPlayers === 'undefined' ? 1 : numberOfPlayers;
+  this.deck = new Deck();
+  this.dealer = new Dealer();
+  this.players = new Array[this.numPlayers];
+}
 
 
