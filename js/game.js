@@ -52,6 +52,10 @@ Deck.prototype.howManyCards = function(){
 }
 //Hand class
 
+Deck.prototype.hasCards = function(){
+  return this.howManyCards() > 0;
+}
+
 var Hand = function(){
   this.cards = [];
   this.score = 0;
@@ -100,11 +104,13 @@ Hand.prototype.popCard = function(){
 var Player = function(){
   this.hands = []; //ready for splits
   this.hands[0] = new Hand();
+  this.option ='';
 };
 
 Player.prototype.addCard = function(card,hand) {
   if (typeof hand === 'undefined') hand = 0;
   this.hands[hand].add(card);
+  this.option = 'hit';
 };
 
 Player.prototype.isLost = function() {
@@ -117,12 +123,22 @@ Player.prototype.splitHand = function() {
   this.hands[1].add(this.hands[0].popCard());
   this.hands[0].halfScore();
   this.hands[1].setScore(this.hands[0].score);
+  this.option = 'split';
 };
 
 Player.prototype.isSplittingAllowed = function(){
   if (this.hands.length > 1) return false; //already split
   return (this.hands[0].isSplittingAllowed());
 };
+
+Player.prototype.stand = function(){
+  this.option = 'stand';
+}
+
+Player.prototype.score = function(){
+  if (typeof this.hands[1] === 'undefined') return this.hands[0].score;
+  return Math.max(this.hands[0].score,this.hands[1].score);
+}
 
 //Dealer class inheriting from Player
 var Dealer = function(){
@@ -137,6 +153,7 @@ Dealer.prototype.shouldTakeCard = function() {
 Dealer.prototype.isSplittingAllowed = function(){
   return false;
 };
+
 
 
 //Game class
@@ -170,6 +187,41 @@ Game.prototype.gameInit = function(){
     var card2 = this.deck.giveACard();
     this.players[i].addCard(card1);
     this.players[i].addCard(card2);
+  }
+};
+
+Game.prototype.hitPlayer = function (which){
+  var player = this.players[which];
+  if (!player.isLost() && this.deck.hasCards()){
+    var card = this.deck.giveACard();
+    player.addCard(card);
+  }
+};
+
+Game.prototype.splitPlayer = function(which){
+  var player = this.players[which];
+  if (player.isSplittingAllowed()) player.splitHand();
+};
+
+
+Game.prototype.playersFinished = function(){
+  return this.players.map(
+    function(player){
+      var end = 0;
+      if (player.option === 'stand') end = 1;
+      if (player.isLost()) end = 1;
+      return end;
+    }).reduce(function(sum,el){
+      return sum + el;
+    }) === this.maxPlayers;
+};
+
+Game.prototype.playDealer = function(){
+  // console.log(this.dealer.hands[0]);
+  while (this.dealer.shouldTakeCard()){
+    // console.log(this.dealer.hands[0]);
+    // console.log('playdealer');
+    this.dealer.addCard(this.deck.giveACard());
   }
 };
 
