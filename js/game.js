@@ -190,11 +190,11 @@ Game.prototype.gameInit = function(){
   }
 };
 
-Game.prototype.hitPlayer = function (which){
+Game.prototype.hitPlayer = function (which,hand){
   var player = this.players[which];
   if (!player.isLost() && this.deck.hasCards()){
     var card = this.deck.giveACard();
-    player.addCard(card);
+    player.addCard(card,hand);
   }
 };
 
@@ -203,6 +203,9 @@ Game.prototype.splitPlayer = function(which){
   if (player.isSplittingAllowed()) player.splitHand();
 };
 
+Game.prototype.standPlayer = function(which){
+  this.player[which].stand();
+}
 
 Game.prototype.areAllPlayersFinished = function(){
   return this.players.map(function(player){
@@ -228,7 +231,8 @@ Game.prototype.findWinners = function(){
         return 0;
   });    
   var max = Math.max.apply(null,results);
-  var ix =[];
+  //ix - index of winning players 
+  var ix =[]; 
   for(var i = 0; i < results.length; i++){
     if(results[i] === max) ix.push(i+1);
   }
