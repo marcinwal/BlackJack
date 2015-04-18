@@ -46,6 +46,10 @@ Deck.prototype.giveACard = function() {
   return this.deck[--this.count];
 };
 
+
+Deck.prototype.howManyCards = function(){
+  return this.count;
+}
 //Hand class
 
 var Hand = function(){
@@ -70,27 +74,27 @@ Hand.prototype.isLost = function() {
 
 Hand.prototype.numOfCards = function(){
   return this.cards.length;
-}
+};
 
 //in case of splitting
 Hand.prototype.halfScore = function(){
   this.score /= 2; 
-}
+};
 
 Hand.prototype.setScore = function(number){
   this.score = number;
-}
+};
 
 Hand.prototype.isSplittingAllowed = function(){
   if (this.cards.length > 2) return false;
   if (this.cards.length = 2) return this.cards[0].isRankEqual(this.cards[1]);
   return false;
-}
+};
 
 //used in case of splitting
 Hand.prototype.popCard = function(){
   return this.cards.pop();
-}
+};
 
 //Player class 
 var Player = function(){
@@ -138,10 +142,34 @@ Dealer.prototype.isSplittingAllowed = function(){
 //Game class
 
 var Game = function(numberOfPlayers){
-  this.numPlayers = typeof numberOfPlayers === 'undefined' ? 1 : numberOfPlayers;
+  this.maxPlayers = (typeof numberOfPlayers ==='undefined') ? 1 : numberOfPlayers;
   this.deck = new Deck();
   this.dealer = new Dealer();
-  this.players = new Array[this.numPlayers];
-}
+  this.players = [];
+};
 
+Game.prototype.addPlayer = function() {
+  if (this.players.length < this.maxPlayers){
+    var player = new Player();
+    this.players.push(player);
+  }
+};
+
+Game.prototype.initDealer = function(){
+  var card1 = this.deck.giveACard();
+  var card2 = this.deck.giveACard();
+  this.dealer.addCard(card1);
+  this.dealer.addCard(card2);  
+};
+
+Game.prototype.gameInit = function(){
+  this.deck.shuffle();
+  this.initDealer();
+  for(var i = 0; i < this.players.length;i++){
+    var card1 = this.deck.giveACard();
+    var card2 = this.deck.giveACard();
+    this.players[i].addCard(card1);
+    this.players[i].addCard(card2);
+  }
+};
 
