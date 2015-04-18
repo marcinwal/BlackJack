@@ -204,24 +204,36 @@ Game.prototype.splitPlayer = function(which){
 };
 
 
-Game.prototype.playersFinished = function(){
-  return this.players.map(
-    function(player){
-      var end = 0;
-      if (player.option === 'stand') end = 1;
-      if (player.isLost()) end = 1;
-      return end;
-    }).reduce(function(sum,el){
-      return sum + el;
-    }) === this.maxPlayers;
+Game.prototype.areAllPlayersFinished = function(){
+  return this.players.map(function(player){
+    var end = 0;
+    if (player.option === 'stand') end = 1;
+    if (player.isLost()) end = 1;
+    return end;
+  }).reduce(function(sum,el){
+    return sum + el;
+  }) === this.maxPlayers;
 };
 
 Game.prototype.playDealer = function(){
-  // console.log(this.dealer.hands[0]);
   while (this.dealer.shouldTakeCard()){
-    // console.log(this.dealer.hands[0]);
-    // console.log('playdealer');
     this.dealer.addCard(this.deck.giveACard());
   }
+};
+
+//finding all the winners with maximum points
+Game.prototype.findWinners = function(){
+  var results = this.players.map(function(player){
+    if (!player.isLost()) {return player.score();} else
+        return 0;
+  });    
+  var max = Math.max.apply(null,results);
+  var ix =[];
+  for(var i = 0; i < results.length; i++){
+    if(results[i] === max) ix.push(i+1);
+  }
+  if ( !this.dealer.isLost() && 
+       this.dealer.score() >= max) return [0]; //dealer won
+  return ix;
 };
 

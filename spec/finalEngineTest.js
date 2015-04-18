@@ -24,21 +24,28 @@ describe('it should have game',function(){
   });
 
   xit('should be the end of the game if all lost/pass',function(){
-    game2 = new Game();
-    game2.addPlayer();
-    game2.gameInit();
-    game2.players[0].stand();
-    expect(game2.playersFinished()).toBe(true);
-  });
-
-  it('dealer should play until > 16',function(){
     game = new Game();
     game.addPlayer();
     game.gameInit();
-    console.log(game.dealer.score());    
+    game.players[0].stand();
+    expect(game.areAllPlayersFinished()).toBe(true);
+  });
+
+  xit('dealer should play until > 16',function(){
+    game = new Game();
+    game.addPlayer();
+    game.gameInit();  
     game.playDealer();
     expect(game.dealer.score()).toBeGreaterThan(16);
-    console.log(game.dealer.score()); 
+  });
+
+  it('should have a list of winners',function(){
+    game = new Game(2);
+    game.addPlayer();
+    game.addPlayer();
+    game.gameInit();
+    game.playDealer();
+    expect(game.findWinners().length).toBeGreaterThan(0);
   });
 
 });
