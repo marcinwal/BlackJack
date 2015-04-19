@@ -15,7 +15,7 @@ describe('it should have a card',function(){
     var card3 = new Card(2,10);
 
     expect(card.isRankEqual(card2)).toBe(true);
-    expect(card.isRankEqual(card3)).toBe(false);  
+    expect(card.isRankEqual(card3)).toBe(true);  
    });
 
    it('should convert card to png code',function(){
@@ -143,7 +143,7 @@ describe('it should have players',function(){
   it('should check if splitting is allowed',function(){
     player.addCard(unshuffledDeck.giveACard());
     player.addCard(unshuffledDeck.giveACard());
-    expect(player.isSplittingAllowed()).toBe(false);    
+    expect(player.isSplittingAllowed()).toBe(true);    
   });
 
   it('should be able to split hand',function(){

@@ -23,7 +23,7 @@ describe('it should have game',function(){
     expect(game.players[0].hands[0].numOfCards()).toEqual(3);
   });
 
-  it('should be the end of the game if all lost/pass',function(){
+  xit('should be the end of the game if all lost/pass',function(){
     game = new Game();
     game.addPlayer();
     game.gameInit();

@@ -139,8 +139,9 @@ Player.prototype.isSplittingAllowed = function(){
   return (this.hands[0].isSplittingAllowed());
 };
 
-Player.prototype.stand = function(){
-  this.option = 'stand';
+Player.prototype.stand = function(hand){
+  var which = (typeof hand === 'undefined') ? 0 : hand;
+  this.option = 'stand' + which;
 }
 
 Player.prototype.score = function(){
@@ -156,6 +157,12 @@ Player.prototype.handsToArrayOfString = function(){
 Player.prototype.numberOfHands = function(){
   if(typeof this.hands[1] === 'undefined') return 1;
   return 2;
+}
+
+Player.prototype.isHandFinished = function(hand){
+  if(hand === 0 && this.option === 'stand0') return true;
+  if(hand === 1 && this.option === 'stand1') return true;
+  return this.hands[hand].isLost();
 }
 
 //Dealer class inheriting from Player
@@ -230,7 +237,7 @@ Game.prototype.standPlayer = function(which){
 Game.prototype.areAllPlayersFinished = function(){
   return this.players.map(function(player){
     var end = 0;
-    if (player.option === 'stand') end = 1;
+    if ((player.option === 'stand0')||(player.option === 'stand1')) end = 1;
     if (player.isLost()) end = 1;
     return end;
   }).reduce(function(sum,el){
