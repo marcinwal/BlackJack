@@ -55,7 +55,7 @@ var blackJackFun = angular.module('BlackJackFun',[])
           $scope.finishTheGame = function(){
             $scope.game.playDealer();
             $scope.winners = $scope.game.findWinners().map(function(player){
-              if (player === 0) return 'Dealer';
+              if (player === 0) return 'The Dealer';
               return "Player " + player;
             })
             $scope.numberOfWinners = $scope.winners.length;

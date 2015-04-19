@@ -24,6 +24,7 @@
     </ul> 
   </container>
     <br class="clearFloats">
+    <span class="score" ng-hide="!end">Points:{{dealer.score()}}</span>
     <h2 class="players-title">Players</h2>
     <div ng-repeat="player in playersIndex">
       <br class="clearFloats">
@@ -36,10 +37,10 @@
         <br class="clearFloats">
         <button class="hit" ng-click="playerHit(player,0)" ng-disabled="players[player].isHandFinished(0)">HIT</button>
         <button class="stand" ng-click="playerStands(player,0)" ng-disabled="players[player].isHandFinished(0)">STAND</button>
-        <button class="split" ng-disabled="!players[player].isSplittingAllowed() || players[player].isHandFinished(0)">SPLIT</button>
+        <button class="split" ng-disabled="!players[player].isSplittingAllowed() || players[player].isHandFinished(0)" ng-click="players[player].splitHand()">SPLIT</button>
         <br>
         <span class="score"+{{player}}>Points:{{players[player].score()}}</span>
-        <span ng-if="isPlayerSplit(player)">
+        <span ng-if="players[player].hasTwoHands()">
           <h4 class="hand-title">Hand 2</h4>
           <ul>
             <li class="player-horizontal" ng-repeat="card in playerHandCards(player,1)"><a href="#"><img ng-src="{{card}}"></a></li>
@@ -47,7 +48,6 @@
           <br class="clearFloats">
           <button class="hit" ng-click="playerHit(player,1)" ng-disabled="players[player].isHandFinished(1)">HIT</button>
           <button class="stand" ng-click="playerStands(player,1)" ng-disabled="players[player].isHandFinished(1)">STAND</button>
-          <button class="split" ng-disabled="!players[player].isSplittingAllowed() || players[player].isHandFinished(1)">SPLIT</button>
           <br>
           <span class="score"+{{player}}>Points:{{players[player].score()}}</span>
         </span>  
