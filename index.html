@@ -18,8 +18,17 @@
     </ul> 
   </container>
   <br class="clearFloats">
-  <container class="player" >
+
     <h2 class="players-title">Players</h2>
-  </container>
+    <div ng-repeat="player in playersIndex">
+      <br class="clearFloats">
+      <container class="player" >
+        <h3 class="player-title">Player {{player+1}}</h3>
+        <h4 class="hand-title">Hand</h4>
+        <ul class="player-horizontal" ng-repeat="card in playerHandCards(player,0)">
+          <li><a href="#"><img ng-src="{{card}}"></a></li>
+        </ul>
+      </container>
+    <div> 
   </body>
 </html>

@@ -5,7 +5,7 @@ describe('BlackJackFunController',function(){
 
   beforeEach(inject(function($rootScope,$controller){
     scope = $rootScope.$new();
-    ctrl = $controller('BlackJackFunController',{
+    ctrl = $controller('BlackJackDealerController',{
       $scope: scope
     });
   }));

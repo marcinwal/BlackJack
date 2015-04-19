@@ -151,6 +151,11 @@ Player.prototype.handsToArrayOfString = function(){
   return [this.hands[0].toArrayOfStrings(),this.hands[1].toArrayOfStrings()];
 }
 
+Player.prototype.numberOfHands = function(){
+  if(typeof this.hands[1] === 'undefined') return 1;
+  return 2;
+}
+
 //Dealer class inheriting from Player
 var Dealer = function(){
 };

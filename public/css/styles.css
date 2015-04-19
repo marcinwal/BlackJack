@@ -5,6 +5,13 @@
   list-style-type: none;
 }
 
+.player-horizontal{
+  display: inline-block;
+  float: left;
+  text-align: center;
+  list-style-type: none;
+}
+
 .clearFloats{
   clear: both;
 }
