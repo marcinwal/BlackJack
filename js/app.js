@@ -26,8 +26,11 @@ var blackJackFun = angular.module('BlackJackFun',[])
             var playersCards = game.players[player].handsToArrayOfString();
             return playersCards[nHand].map(function(card){
               return "public/cards_png/"+card+'.png';
-            });    
-            
+            });                
           };
+
+          $scope.isPlayerSplit = function(player){
+            return game.players[player].numberOfHands === 2;
+           }
 
          }])

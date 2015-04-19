@@ -28,6 +28,12 @@
         <ul class="player-horizontal" ng-repeat="card in playerHandCards(player,0)">
           <li><a href="#"><img ng-src="{{card}}"></a></li>
         </ul>
+        <br class="clearFloats">
+        <span ng-if="isPlayerSplit(player)">
+          <h4 class="hand-title">Hand 2</h4>
+          <ul class="player-horizontal" ng-repeat="card in playerHandCards(player,1)">
+            <li><a href="#"><img ng-src="{{card}}"></a></li>
+          </ul>
       </container>
     <div> 
   </body>
