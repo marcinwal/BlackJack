@@ -1,7 +1,7 @@
 var blackJackFun = angular.module('BlackJackFun',[])
          .controller('BlackJackDealerController',['$scope',function($scope){
 
-          var numberOfPlayers = 2;
+          var numberOfPlayers = 4;
           var game = new Game(numberOfPlayers);
           
           for(var i=0; i < numberOfPlayers;i++)  game.addPlayer();

@@ -244,7 +244,7 @@ Game.prototype.areAllPlayersFinished = function(){
     return sum + el;
   }) === this.maxPlayers;
 };
-//auntomated intelligance for dealer to play once 
+//automated intelligance for dealer to play once 
 //all other players are finished
 Game.prototype.playDealer = function(){
   while (this.dealer.shouldTakeCard()){
