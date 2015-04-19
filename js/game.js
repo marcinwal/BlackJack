@@ -8,7 +8,9 @@ var Card = function(suit,rank){
 };
 
 Card.prototype.isRankEqual = function(card) {
-  return this.rank === card.rank;
+  if((this.rank === 1) && (card.rank >= 10) ||
+     (this.rank >= 10) && (card.rank === 1)) return true;
+  return Math.min(this.rank,10) === Math.min(card.rank,10);
 };
 
 //string for picture codes

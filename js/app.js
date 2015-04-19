@@ -1,7 +1,7 @@
 var blackJackFun = angular.module('BlackJackFun',[])
          .controller('BlackJackDealerController',['$scope',function($scope){
 
-          var numberOfPlayers = 1;
+          var numberOfPlayers = 2;
           var game = new Game(numberOfPlayers);
           
           for(var i=0; i < numberOfPlayers;i++)  game.addPlayer();
@@ -31,6 +31,15 @@ var blackJackFun = angular.module('BlackJackFun',[])
 
           $scope.isPlayerSplit = function(player){
             return game.players[player].numberOfHands === 2;
-           }
+          };
+
+          $scope.playerScore = function(player){
+            return game.players[player].score();
+          }
+
+          $scope.isSplitAllowed = function(player){
+            console.log(game.players[player].isSplittingAllowed());
+            return game.players[player].isSplittingAllowed();
+          }
 
          }])
