@@ -4,16 +4,22 @@
     <meta charset="utf-8">
     <title>BlackJackFun</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="public/css/styles.css">
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="js/app.js"></script>
     <script src="js/game.js"></script>
   </head>
-  <body>
-  <div class="dealer">    
-  </div>
-  <div class="player">    
-  </div>
+  <body ng-controller="BlackJackDealerController">
+  <container class="dealer">
+    <h2 class="dealer-title">Dealer</h2> 
+    <ul class="dealer-horizontal" ng-repeat="card in dealerCardsLinks()"> 
+      <li><a href="#"><img ng-src="{{card}}"></a></li> 
+    </ul> 
+  </container>
+  <br class="clearFloats">
+  <container class="player" >
+    <h2 class="players-title">Players</h2>
+  </container>
   </body>
 </html>
