@@ -7,7 +7,7 @@ describe('it should have game',function(){
     expect(game.players.length).toEqual(1);
   });
 
-  it('the dealer should give cards to all',function(){
+  xit('the dealer should give cards to all',function(){
     game = new Game();
     game.addPlayer();
     game.gameInit();
