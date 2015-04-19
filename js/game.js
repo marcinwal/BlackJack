@@ -100,6 +100,13 @@ Hand.prototype.popCard = function(){
   return this.cards.pop();
 };
 
+Hand.prototype.toArrayOfStrings = function(){
+  if (this.cards.length === 0) return [];
+  return this.cards.map(function(card){
+    return card.toString();
+  });
+}
+
 //Player class 
 var Player = function(){
   this.hands = []; //ready for splits
@@ -138,6 +145,11 @@ Player.prototype.stand = function(){
 Player.prototype.score = function(){
   if (typeof this.hands[1] === 'undefined') return this.hands[0].score;
   return Math.max(this.hands[0].score,this.hands[1].score);
+}
+
+Player.prototype.handsToArrayOfString = function(){
+  if (typeof this.hands[1] === 'undefined') return [this.hands[0].toArrayOfStrings(),[]];
+  return [this.hands[0].toArrayOfStrings(),this.hands[1].toArrayOfStrings()];
 }
 
 //Dealer class inheriting from Player

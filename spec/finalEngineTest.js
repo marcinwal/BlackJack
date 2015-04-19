@@ -48,4 +48,13 @@ describe('it should have game',function(){
     expect(game.findWinners().length).toBeGreaterThan(0);
   });
 
+  it('should have a list of cards',function(){
+    game = new Game(2);
+    game.addPlayer();
+    game.addPlayer();
+    game.gameInit();
+    cardsInHands = game.players[0].handsToArrayOfString();
+    expect(cardsInHands[0].length).toEqual(2);
+  });
+
 });
