@@ -8,8 +8,6 @@ var Card = function(suit,rank){
 };
 
 Card.prototype.isRankEqual = function(card) {
-  if((this.rank === 1) && (card.rank >= 10) ||
-     (this.rank >= 10) && (card.rank === 1)) return true;
   return Math.min(this.rank,10) === Math.min(card.rank,10);
 };
 
@@ -144,7 +142,8 @@ Player.prototype.stand = function(hand){
   this.option = 'stand' + which;
 }
 
-Player.prototype.score = function(){
+Player.prototype.score = function(hand){
+  if (typeof hand != 'undefined') return this.hands[hand].score;
   if (typeof this.hands[1] === 'undefined') return this.hands[0].score;
   return Math.max(this.hands[0].score,this.hands[1].score);
 }
@@ -244,7 +243,7 @@ Game.prototype.areAllPlayersFinished = function(){
     return sum + el;
   }) === this.maxPlayers;
 };
-//automated intelligance for dealer to play once 
+//automated intelligence for dealer to play once 
 //all other players are finished
 Game.prototype.playDealer = function(){
   while (this.dealer.shouldTakeCard()){
