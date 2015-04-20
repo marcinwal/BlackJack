@@ -1,15 +1,21 @@
 .dealer-horizontal{
   display: inline-block;
-  float: left;
   text-align: center;
   list-style-type: none;
 }
 
 .player-horizontal{
   display: inline-block;
-  float: left;
   text-align: center;
   list-style-type: none;
+}
+
+.players{
+  text-align: center;
+}
+
+.player{
+  text-align: center;
 }
 
 .clearFloats{
@@ -17,33 +23,23 @@
 }
 
 .dealer-title{
-
+  text-align: center;
 }
 
-.players-title{
-
-}
 
 .winner{
-
+  text-align: center;
+  text-decoration: underline;
+  text-transform: capitalize;
 }
 
 .score{
-
+  margin-left: 0;
+  margin-right: 0;
 }
 
-.dealer{
-
-}
-
-.dealer-title{
-
-}
-
-.finished{
-
-}
 
 .lost{
   color: red;
+  font-style: bold;
 }

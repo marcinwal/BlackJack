@@ -31,10 +31,6 @@ var blackJackFun = angular.module('BlackJackFun',[])
             });                
           };
 
-          $scope.isPlayerSplit = function(player){
-            return $scope.players[player].numberOfHands === 2;
-          };
-
           $scope.playerHit = function(player,hand){
             if ($scope.deck.hasCards()) { 
               var card = $scope.deck.giveACard();
