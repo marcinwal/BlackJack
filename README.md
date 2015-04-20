@@ -6,7 +6,7 @@ Card
 Deck (set of 52 cards which can be easily extended to multi decks)
 Hand (set of cards)
 Player (who has two hands(2nd after the split))
-Dealer which inherits from Player and has algo for playing decisions
+Dealer class which inherits from Player and has algo for playing decisions
 Game which is an object controlling overall game of one dealer and n-players;
 
 Notes on the initial structure:
@@ -18,9 +18,13 @@ I used AngularJS.
 
 "BlackJack engine" was build using TDD as I was building the structure.
 
-I learnt more about AngularJS but it was my first project not a walkthrough so I indend to solve similiar tasks.
+I learnt more about AngularJS as it was my first project not a walkthrough so I intend to solve similiar tasks.
 
 I also had fun with some map/reduce functions like Game.prototype.areAllPlayersFinished.
 
-Dealer is now allowed to split but it can be added.
+Dealer is not allowed to split at the moment but it can be added.
+
+I did small styling using bootstrap.
+
+
 
