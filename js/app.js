@@ -1,7 +1,7 @@
 var blackJackFun = angular.module('BlackJackFun',[])
          .controller('BlackJackDealerController',['$scope',function($scope){
 
-          var numberOfPlayers = 4;
+          var numberOfPlayers = 3;
           var game = new Game(numberOfPlayers);
           
           for(var i=0; i < numberOfPlayers;i++)  game.addPlayer();
@@ -59,8 +59,8 @@ var blackJackFun = angular.module('BlackJackFun',[])
               return "Player " + player;
             })
             $scope.numberOfWinners = $scope.winners.length;
-            $scope.winners = $scope.winners.join(',');
+            $scope.winners = $scope.winners.join(', ');
             $scope.end = true;
           };
 
-         }])
+         }]);

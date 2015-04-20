@@ -49,11 +49,11 @@ Deck.prototype.giveACard = function() {
 
 Deck.prototype.howManyCards = function(){
   return this.count;
-}
+};
 
 Deck.prototype.hasCards = function(){
   return this.howManyCards() > 0;
-}
+};
 //Hand class
 var Hand = function(){
   this.cards = [];
@@ -90,7 +90,7 @@ Hand.prototype.setScore = function(number){
 
 Hand.prototype.isSplittingAllowed = function(){
   if (this.cards.length > 2) return false;
-  if (this.cards.length = 2) return this.cards[0].isRankEqual(this.cards[1]);
+  if (this.cards.length == 2) return this.cards[0].isRankEqual(this.cards[1]);
   return false;
 };
 
@@ -104,7 +104,7 @@ Hand.prototype.toArrayOfStrings = function(){
   return this.cards.map(function(card){
     return card.toString();
   });
-}
+};
 
 //Player class 
 var Player = function(){
@@ -140,29 +140,29 @@ Player.prototype.isSplittingAllowed = function(){
 Player.prototype.stand = function(hand){
   var which = (typeof hand === 'undefined') ? 0 : hand;
   this.option = 'stand' + which;
-}
+};
 
 Player.prototype.score = function(hand){
   if (typeof hand != 'undefined') return this.hands[hand].score;
   if (typeof this.hands[1] === 'undefined') return this.hands[0].score;
   return Math.max(this.hands[0].score,this.hands[1].score);
-}
+};
 
 Player.prototype.handsToArrayOfString = function(){
   if (typeof this.hands[1] === 'undefined') return [this.hands[0].toArrayOfStrings(),[]];
   return [this.hands[0].toArrayOfStrings(),this.hands[1].toArrayOfStrings()];
-}
+};
 
 Player.prototype.hasTwoHands = function(){
   if(typeof this.hands[1] === 'undefined') return false;
   return true;
-}
+};
 
 Player.prototype.isHandFinished = function(hand){
   if(hand === 0 && this.option === 'stand0') return true;
   if(hand === 1 && this.option === 'stand1') return true;
   return this.hands[hand].isLost();
-}
+};
 
 //Dealer class inheriting from Player
 var Dealer = function(){

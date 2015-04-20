@@ -41,6 +41,7 @@
         <br>
         <span class="score">Points:{{players[player].score(0)}}</span>
         <p ng-hide="!players[player].hands[0].isLost()" class="lost">Lost</p>
+        <p ng-hide="!players[player].isHandFinished(0)" class="finished">Finished</p>     
         <span ng-if="players[player].hasTwoHands()">
           <h4 class="hand-title">Hand 2</h4>
           <ul>
@@ -51,6 +52,8 @@
           <button class="stand" ng-click="playerStands(player,1)" ng-disabled="players[player].isHandFinished(1)">STAND</button>
           <br>
           <span class="score">Points:{{players[player].score(1)}}</span>
+          <p ng-hide="!players[player].hands[1].isLost()" class="lost">Lost</p>
+          <p ng-hide="!players[player].isHandFinished(1)" class="finished">Finished</p>          
         </span>  
       </container>
     <div> 
