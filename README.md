@@ -23,8 +23,8 @@ I learnt more about AngularJS as it was my first project not a walkthrough so I 
 I also had fun with some map/reduce functions like Game.prototype.areAllPlayersFinished.
 
 Dealer is not allowed to split at the moment but it can be added.
-
 I did small styling using bootstrap.
 
 
+I have to add that I read about few BlackJack strategies which was also interesting and who knows it may be even beneficial one day :).
 
