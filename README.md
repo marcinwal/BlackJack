@@ -18,7 +18,7 @@ I used AngularJS.
 
 "BlackJack engine" was build using TDD as I was building the structure.
 
-I learnt more about AngularJS as it was my first project not a walkthrough so I intend to solve similiar tasks.
+I learned more about AngularJS as it was my first project not a walkthrough so I intend to solve similiar tasks.
 
 I also had fun with some map/reduce functions like Game.prototype.areAllPlayersFinished.
 
