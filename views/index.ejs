@@ -23,7 +23,7 @@
           </container>        
         </container>
         <container class="dealer">    
-          <h2 class="dealer-title">Dealer</h2> 
+          <h2 class="dealer-title" ng-hide="end">Dealer</h2> 
           <ul> 
             <li class="dealer-horizontal" ng-repeat="card in dealerCardsLinks()"><a href="#"><img ng-src="{{card}}"></a></li>
           </ul> 
