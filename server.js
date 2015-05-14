@@ -4,7 +4,10 @@ var app = express();
 var path = require('path');
 
 var server = http.createServer(app);
-var port = 3000;
+
+
+
+app.set('port',process.env.PORT||3000)
 
 app.set('view engine','ejs');
 app.use(express.static(__dirname + '/public'));
@@ -14,8 +17,8 @@ app.get('/',function(req,res){
   res.render('index');
 });
 
-server.listen(port,function(){
-  console.log('server is running on'+ port)
+server.listen(app.get('port'),function(){
+  console.log('server is running on:'+ app.get(port));
 });
 
 module.exports = server;
