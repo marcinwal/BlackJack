@@ -18,7 +18,7 @@ app.get('/',function(req,res){
 });
 
 server.listen(app.get('port'),function(){
-  console.log('server is running on:'+ app.get(port));
+  console.log('server is running on:'+ app.get('port'));
 });
 
 module.exports = server;
